@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', "mission_ground_2026_hardcore") # Security update
-DB_PATH = "exam.db"
+DB_PATH = "/tmp/exam.db"
 
 # --- DATABASE SETUP ---
 def init_db():
