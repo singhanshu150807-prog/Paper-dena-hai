@@ -314,9 +314,11 @@ RESULT_HTML = COMMON_STYLE + '''
         <a href="/logout" class="btn-primary" style="text-decoration:none; display:block; font-size:1.1rem;">Niklo Yahan Se 🚪</a>
     </div>
 </div>
-'''
-
 if __name__ == '__main__':
     init_db()
-    port = int(os.environ.get('PORT', 5000)) # Hosting ke liye port
+    import os
+    port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
+
+if 
