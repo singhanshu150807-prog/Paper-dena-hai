@@ -314,9 +314,12 @@ RESULT_HTML = COMMON_STYLE + '''
 </div>
 '''
 
-if __name__ == '__main__':
+# Render par database auto-create karne ke liye
+with app.app_context():
     init_db()
-    import os
+    
+
+if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
-
+    
