@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', "mission_ground_2026_hardcore") # Security update
 DB_PATH = "exam.db"
 
-# --- DATABASE SETUP (Unchanged) ---
+# --- DATABASE SETUP ---
 def init_db():
     with sqlite3.connect(DB_PATH) as conn:
         c = conn.cursor()
@@ -38,7 +38,6 @@ COMMON_STYLE = '''
     }
     body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: #f8fafc; margin: 0; perspective: 1000px; overflow-x: hidden; }
     
-    /* Cool Floating Animation */
     @keyframes move {
         0% { transform: translateY(0px) translateX(0px); }
         50% { transform: translateY(-20px) translateX(10px); }
@@ -169,7 +168,7 @@ def logout():
     session.clear()
     return redirect('/login')
 
-# --- TEMPLATES (Updated with Fancy Stuff) ---
+# --- TEMPLATES ---
 
 AUTH_HTML = COMMON_STYLE + '''
 <div style="display:flex; align-items:center; justify-content:center; min-height:100vh; padding: 20px;">
@@ -212,8 +211,8 @@ EXAM_HTML = COMMON_STYLE + '''
             </div>
             {% endfor %}
             <div style="margin-top:25px; display:flex; gap:15px;">
-                <button type="button" onclick="saveNext()" style="flex:1; background:var(--primary); color:white; border:none; padding:16px; border-radius:14px; font-weight:bold; cursor:pointer; transition:0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">Save & Next ➡️</button>
-                <button type="button" onclick="markReview()" style="flex:1; background:var(--rev); color:white; border:none; padding:16px; border-radius:14px; font-weight:bold; cursor:pointer; transition:0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">Review 🔖</button>
+                <button type="button" onclick="saveNext()" style="flex:1; background:var(--primary); color:white; border:none; padding:16px; border-radius:14px; font-weight:bold; cursor:pointer; transition:0.3s;">Save & Next ➡️</button>
+                <button type="button" onclick="markReview()" style="flex:1; background:var(--rev); color:white; border:none; padding:16px; border-radius:14px; font-weight:bold; cursor:pointer; transition:0.3s;">Review 🔖</button>
             </div>
         </form>
     </div>
@@ -224,7 +223,7 @@ EXAM_HTML = COMMON_STYLE + '''
             <div class="p-btn" id="p-btn-{{loop.index0}}" onclick="jumpTo({{loop.index0}})">{{loop.index}}</div>
             {% endfor %}
         </div>
-        <button type="button" onclick="confirmSubmit()" style="width:100%; margin-top:30px; background:var(--ans); border:none; padding:18px; border-radius:15px; color:white; font-weight:bold; cursor:pointer; box-shadow: 0 5px 15px rgba(16,185,129,0.3); transition:0.3s; font-size:1.1rem;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">Final Submit 🔥</button>
+        <button type="button" onclick="confirmSubmit()" style="width:100%; margin-top:30px; background:var(--ans); border:none; padding:18px; border-radius:15px; color:white; font-weight:bold; cursor:pointer; box-shadow: 0 5px 15px rgba(16,185,129,0.3); transition:0.3s; font-size:1.1rem;">Final Submit 🔥</button>
     </div>
 </div>
 <script>
@@ -256,7 +255,6 @@ EXAM_HTML = COMMON_STYLE + '''
         let currentQElements = document.querySelectorAll('.q-view');
         let currentQ = currentQElements[currentIdx];
         let radioButtons = currentQ.querySelectorAll('input[type="radio"]');
-        
         let hasAns = false;
         radioButtons.forEach(rb => { if(rb.checked) hasAns = true; });
 
@@ -314,6 +312,8 @@ RESULT_HTML = COMMON_STYLE + '''
         <a href="/logout" class="btn-primary" style="text-decoration:none; display:block; font-size:1.1rem;">Niklo Yahan Se 🚪</a>
     </div>
 </div>
+'''
+
 if __name__ == '__main__':
     init_db()
     import os
